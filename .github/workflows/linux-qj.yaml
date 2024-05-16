@@ -63,8 +63,11 @@ jobs:
           echo $ONNXRUNTIME_VERSION > ONNXRUNTIME_VERSION
           git submodule update --init --depth=1 onnxruntime
           cd onnxruntime
-          git fetch origin tag v$ONNXRUNTIME_VERSION
-          git checkout v$ONNXRUNTIME_VERSION
+          git fetch
+          git reset --hard origin/main
+          git log | head
+          #git fetch origin tag v$ONNXRUNTIME_VERSION
+          #git checkout v$ONNXRUNTIME_VERSION
 
       - name: Download protoc
         if: steps.cache-build-result.outputs.cache-hit != 'true'
