@@ -60,7 +60,7 @@ jobs:
       - name: Update ONNX Runtime
         if: steps.cache-build-result.outputs.cache-hit != 'true'
 	shell: bash
-	run:
+	run: |
           if [[ ${{ env.ONNXRUNTIME_VERSION }} == main ]]; then
             git submodule update --init --depth=1 onnxruntime
             cd onnxruntime
