@@ -232,7 +232,7 @@ jobs:
           file_glob: true
           file: "./*.zip"
           overwrite: true
-          repo_name: qjivy/onnxruntime-libs
+          repo_name: qjivy/onnxruntime-build
           repo_token: ${{ secrets.UPLOAD_GH_SHERPA_ONNX_TOKEN }}
           # tag: v${{ env.ONNXRUNTIME_VERSION }}
           tag: v${{ env.ONNXRUNTIME_TAG }}
