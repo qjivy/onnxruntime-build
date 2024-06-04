@@ -2,7 +2,7 @@
 
 set -ex
 
-CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:=Release}
+CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:=Debug}
 SOURCE_DIR=${SOURCE_DIR:=static_lib}
 BUILD_DIR=${BUILD_DIR:=build/static_lib}
 OUTPUT_DIR=${OUTPUT_DIR:=output/static_lib}
@@ -25,16 +25,14 @@ cd $(dirname $0)
 echo "pwd: $PWD"
 
 (
-    # git submodule update --init --depth=1 $ONNXRUNTIME_SOURCE_DIR
+    git submodule update --init --depth=1 $ONNXRUNTIME_SOURCE_DIR
     cd $ONNXRUNTIME_SOURCE_DIR
-    if [[ $ONNXRUNTIME_VERSION != $(cat VERSION_NUMBER) && $ONNXRUNTIME_VERSION != main ]]; then
+    if [ $ONNXRUNTIME_VERSION != $(cat VERSION_NUMBER) ]; then
         git fetch origin tag v$ONNXRUNTIME_VERSION
         git checkout v$ONNXRUNTIME_VERSION
     fi
     git submodule update --init --depth=1 --recursive
 )
-echo "PWD: $PWD"
-ls -lh /home/runner/work/onnxruntime-build/onnxruntime-build/onnxruntime/cmake/riscv64.toolchain.cmake
 
 cmake \
     -S $SOURCE_DIR \

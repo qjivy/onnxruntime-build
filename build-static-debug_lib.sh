@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
-CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:=Release}
+CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:=Debug}
 SOURCE_DIR=${SOURCE_DIR:=static_lib}
 BUILD_DIR=${BUILD_DIR:=build/static_lib}
 OUTPUT_DIR=${OUTPUT_DIR:=output/static_lib}
@@ -22,7 +22,6 @@ esac
 PARALLEL_JOB_COUNT=${PARALLEL_JOB_COUNT:=$CPU_COUNT}
 
 cd $(dirname $0)
-echo "pwd: $PWD"
 
 (
     # git submodule update --init --depth=1 $ONNXRUNTIME_SOURCE_DIR
